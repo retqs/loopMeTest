@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <section class="container">
+      <div class="date">
+        <img src="./assets/P_date_tag.png" alt="" />
+      </div>
+      <div class="content">
+        <div class="content__disclaimer">
+          <img src="./assets/P_main_copy.png" alt="disclaimer" />
+        </div>
+        <div class="loader">
+          <div class="items">
+            <div class="items__item" id="productOne">
+              <img src="./assets/P_Versa_Pink.png" alt="" />
+            </div>
+            <div class="items__item" id="productTwo">
+              <img src="./assets/P_Charge3_Lilac.png" alt="" />
+            </div>
+            <div class="items__item" id="productThree">
+              <img src="./assets/P_HR_White.png" alt="" />
+            </div>
+            <img class="item__shadow" src="./assets/P_shadow.png" alt="" />
+          </div>
+          <div class="loader__infoPriceTag">
+            <img src="./assets/P_intro_pricetag.png" alt="" />
+          </div>
+        </div>
+        <div class="sliderContainer">
+          <button id="prev" class="sliderContainer__btn">
+            <img src="./assets/P_arrow_left.png" alt="" />
+          </button>
+
+          <div class="slider" id="slider">
+            <div class="slide">
+              <figure class="slide__product">
+                <img class="product versa" src="./assets/P_Versa_Pink.png" alt="" />
+                <img class="shadow" src="./assets/P_shadow.png" alt="" />
+              </figure>
+              <div class="slideDescription">
+                <div class="slideDescription__variations">
+                  <div class="colors">
+                    <input type="radio" id="selectedPink" style="display: none;" />
+                    <label
+                      class="colors__btn animated"
+                      id="versaPink"
+                      data-selectedItem="./assets/P_Versa_Pink.png"
+                      for="selectedPink"
+                    >
+                      <img src="./assets/P_Versa_Pink_on.png" alt="" />
+                    </label>
+
+                    <input type="radio" id="selectedGrey" style="display: none;" />
+                    <label
+                      class="colors__btn animated"
+                      id="versaGrey"
+                      data-selectedItem="./assets/P_Versa_Grey.png"
+                      for="selectedGrey"
+                    >
+                      <img src="./assets/P_Versa_Grey_off.png" alt="" />
+                    </label>
+
+                    <input type="radio" id="selectedBlack" style="display: none;" />
+                    <label
+                      class="colors__btn animated"
+                      id="versaBlack"
+                      data-selectedItem="./assets/P_Versa_Black.png"
+                      for="selectedBlack"
+                    >
+                      <img src="./assets/P_Versa_Black_off.png" alt="" />
+                    </label>
+                  </div>
+
+                  <div class="slideDescription__title animated">
+                    <img src="./assets/P_Versa_lockup.png" alt="" />
+                  </div>
+                </div>
+                <div class="slideDescription__price animated">
+                  <figure class="price">
+                    <img src="./assets/P_Versa_price.png" alt="price" />
+                  </figure>
+                </div>
+              </div>
+            </div>
+
+            <div class="slide">
+              <figure class="slide__product">
+                <img class="product charger" src="./assets/P_Charge3_Lilac.png" alt="" />
+                <img class="shadow" src="./assets/P_shadow.png" alt="" />
+              </figure>
+              <div class="slideDescription">
+                <div class="slideDescription__variations">
+                  <div class="colors">
+                    <label
+                      for="chargerLilac"
+                      class="colors__btn"
+                      id="Charge3Lilac"
+                      data-selectedItem="./assets/P_Charge3_Lilac.png"
+                    >
+                      <img src="./assets/P_Charge3_Lilac_on.png" alt="" />
+                    </label>
+                    <input type="radio" id="chargerLilac" style="display: none;" />
+
+                    <label
+                      for="charger"
+                      class="colors__btn"
+                      id="Charge3Black"
+                      data-selectedItem="./assets/P_Charge3_Black.png"
+                    >
+                      <img src="./assets/P_Charge3_Black_off.png" alt="" />
+                    </label>
+                    <input type="radio" id="chargerBlack" style="display: none;" />
+
+                    <label
+                      for="chargerBlue"
+                      class="colors__btn"
+                      id="Charge3Blue"
+                      data-selectedItem="./assets/P_Charge3_Blue.png"
+                    >
+                      <img src="./assets/P_Charge3_Blue_off.png" alt="" />
+                    </label>
+                    <input type="radio" id="chargerBlue" style="display: none;" />
+                  </div>
+
+                  <div class="slideDescription__title">
+                    <img src="./assets/P_Charge3_lockup.png" alt="" />
+                    <img src="./assets/P_HR_disclaimer.png" alt="" />
+                  </div>
+                </div>
+                <div class="slideDescription__price">
+                  <figure class="price">
+                    <img src="./assets/P_Versa_price.png" alt="price" />
+                  </figure>
+                </div>
+              </div>
+            </div>
+
+            <div class="slide">
+              <figure class="slide__product">
+                <img class="product hr" src="./assets/P_HR_White.png" alt="" />
+                <img class="shadow" src="./assets/P_shadow.png" alt="" />
+              </figure>
+              <div class="slideDescription">
+                <div class="slideDescription__variations">
+                  <div class="colors">
+                    <label class="colors__btn" id="HRWhite" data-selectedItem="./assets/P_HR_White.png" for>
+                      <img src="./assets/P_HR_White_on.png" alt="" />
+                    </label>
+                    <input type="radio" id="selectedHRWhite" style="display: none;" />
+
+                    <label class="colors__btn" id="HRLilac" data-selectedItem="./assets/P_HR_Lilac.png">
+                      <img src="./assets/P_HR_Lilac_off.png" alt="" />
+                    </label>
+                    <input type="radio" id="selectedHRLilac" style="display: none;" />
+
+                    <label class="colors__btn" id="HRBlack" data-selectedItem="./assets/P_HR_Black.png">
+                      <img src="./assets/P_HR_Black_off.png" alt="" />
+                    </label>
+                    <input type="radio" id="selectedHRBlack" style="display: none;" />
+                  </div>
+
+                  <div class="slideDescription__title">
+                    <img src="./assets/P_HR_lockup.png" alt="" />
+                  </div>
+                </div>
+                <div class="slideDescription__price">
+                  <figure class="price">
+                    <img src="./assets/P_Versa_price.png" alt="price" />
+                  </figure>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <button id="next" class="sliderContainer__btn">
+            <img src="./assets/P_arrow_right.png" alt="" />
+          </button>
+        </div>
+      </div>
+
+      <footer class="footer">
+        <a class="footer__link" href="https://www.google.com/" target="_blank">
+          <img src="./assets/P_fitbit_logo.png" alt="" />
+        </a>
+        <a class="footer__link" href="https://www.google.com/" target="_blank">
+          <img src="./assets/P_CTA.png" alt="" />
+        </a>
+      </footer>
+    </section>
+    <div class="notAvailable">
+      <div class="notAvailable__content">
+        <img src="./assets/not_available.png" alt="" />
+        <h2>Not avilable in this mode</h2>
+      </div>
+    </div>
+
+    <script src="./index.js"></script>
+  </body>
+</html>

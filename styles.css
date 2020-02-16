@@ -1,0 +1,432 @@
+*,
+*::after,
+*::before {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-snap-type: x mandatory;
+}
+
+body {
+  height: 100%;
+  width: 100%;
+}
+
+/* ---------------------------------------Not available---------------------------------------- */
+
+.notAvailable {
+  position: absolute;
+  height: 100vh;
+  width: 100%;
+  top: 0;
+  left: 0;
+  background: #f2f2f2;
+  z-index: 100;
+  display: none;
+}
+
+.notAvailable__content {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.notAvailable h2 {
+  margin: 50px 20px;
+  text-transform: capitalize;
+}
+
+/* ---------------------------------------Not available END---------------------------------------- */
+
+.container {
+  height: 100vh;
+  width: 100%;
+  position: relative;
+  background: url('./assets/P_bg.jpg') center/cover no-repeat;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.date {
+  position: absolute;
+  top: 0;
+  left: 2vw;
+}
+
+.date img {
+  height: 50px;
+  width: auto;
+}
+
+.content {
+  height: 90vh;
+  width: 100%;
+  position: relative;
+}
+
+.content__disclaimer {
+  height: 10vh;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 10vh;
+  opacity: 0;
+}
+
+.content__disclaimer img {
+  height: 60px;
+  width: auto;
+}
+
+/* -------------------------Loader---------------------------- */
+
+.loader {
+  height: 70vh;
+  margin-top: auto;
+  width: 100%;
+  position: absolute;
+  bottom: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  display: none;
+  transition: all 0.4s;
+}
+
+.loader__infoPriceTag {
+  height: 20vh;
+  width: 100%;
+  text-align: center;
+  opacity: 0;
+}
+
+.loader__infoPriceTag img {
+  height: 100%;
+  width: auto;
+}
+
+.items {
+  position: relative;
+  height: 40vh;
+  width: 340px;
+  margin: 0 auto;
+}
+
+.item__shadow {
+  position: absolute;
+  height: 40px;
+  width: auto;
+  bottom: -30px;
+  left: 50%;
+  transform: translateX(-50%) scale(1.5);
+  opacity: 0;
+}
+
+.items__item {
+  position: absolute;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  height: 250px;
+  width: 220px;
+}
+
+.items__item img {
+  height: 100%;
+  width: auto;
+  pointer-events: none;
+}
+
+.items__item:nth-child(1) {
+  left: 27%;
+  z-index: 3;
+  opacity: 0;
+}
+
+.items__item:nth-child(2) {
+  left: 55%;
+  z-index: 2;
+  opacity: 0;
+}
+
+.items__item:nth-child(3) {
+  left: 80%;
+  z-index: 1;
+  opacity: 0;
+}
+
+/* -------------------------Loader END---------------------------- */
+
+/* ---------------------------------Slider--------------------------------- */
+
+.sliderContainer {
+  height: 70vh;
+  margin-top: auto;
+  width: 100%;
+  position: absolute;
+  bottom: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1;
+  visibility: hidden;
+}
+
+.sliderContainer__btn {
+  background: none;
+  outline: none;
+  border: none;
+  height: 45px;
+  width: 45px;
+  position: absolute;
+  top: 35%;
+  transform: translateY(-50%);
+  z-index: 10;
+}
+
+#prev {
+  left: 2vw;
+}
+
+#next {
+  right: 2vw;
+}
+
+.sliderContainer__btn img {
+  height: 100%;
+  width: 100%;
+}
+
+.slider {
+  position: relative;
+  display: flex;
+  /* overflow-y: hidden; */
+  max-height: 70vh;
+  width: 100%;
+  transition: left 0.2s ease-out;
+}
+
+.slide {
+  height: 70vh;
+  min-width: 100%;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: space-between;
+  scroll-snap-align: center;
+}
+
+.slide__product {
+  height: 300px;
+  width: 100%;
+  display: flex;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  position: relative;
+  transition: all 0.4s;
+}
+
+.product {
+  max-height: 100%;
+  width: auto;
+  transform: scale(0.9);
+}
+
+.shadow {
+  position: absolute;
+  bottom: -30px;
+  height: 60px;
+  /* transform: scale(1.5); */
+  z-index: -1;
+  opacity: 0;
+}
+
+.slideDescription {
+  height: 22vh;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.slideDescription__variations {
+  display: flex;
+  flex-direction: column;
+}
+
+.colors {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.colors__btn {
+  background: none;
+  outline: none;
+  border: none;
+  cursor: pointer;
+  height: 40px;
+  width: 40px;
+  margin: 0px 10px 10px 10px;
+}
+
+.colors__btn img {
+  height: 100%;
+  width: 100%;
+}
+
+.slideDescription__title {
+  height: 50%;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.slideDescription__title img {
+  height: 30px;
+  width: auto;
+}
+
+.slideDescription__price {
+  width: 100%;
+}
+
+.price {
+  width: 50%;
+  margin-left: auto;
+  height: 100%;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+}
+
+.slideDescription__price img {
+  height: 35px;
+  width: auto;
+}
+
+/* ---------------------------------Slider End--------------------------------- */
+
+/* -----------------------------------Footer ------------------------------------ */
+
+.footer {
+  height: 10vh;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+}
+
+.footer__link {
+  padding: 10px;
+}
+
+.footer__link img {
+  height: 40px;
+  width: auto;
+}
+
+/* -----------------------------------Footer End------------------------------------ */
+
+/* -------------------------------Animations--------------------------------------- */
+
+.reveal {
+  animation: reveal 1s;
+  opacity: 1 !important;
+}
+
+.fromTop {
+  animation: fromTop 1s ease;
+  opacity: 1 !important;
+}
+
+.fromBottom {
+  animation: fromBottom 1s;
+  opacity: 1 !important;
+}
+
+.productAppeared {
+  animation: productAppear 1s cubic-bezier(0.46, 0.07, 0.39, 0.78);
+  opacity: 1 !important;
+}
+
+.hidden {
+  animation: hide 1.3s;
+}
+
+/* .animated {
+  animation: reveal 1s;
+} */
+
+@keyframes productAppear {
+  from {
+    top: 5%;
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes fromTop {
+  from {
+    top: 30%;
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes fromBottom {
+  from {
+    top: 80%;
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes reveal {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes hide {
+  0% {
+    opacity: 1;
+  }
+
+  50% {
+    opacity: 0.5;
+  }
+
+  100% {
+    opacity: 0;
+  }
+}
+
+/* -------------------------------Animations End--------------------------------------- */
