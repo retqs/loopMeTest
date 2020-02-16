@@ -129,24 +129,17 @@ function Slider(slider, prev, next) {
 
   next.addEventListener('click', () => {
     index++;
-    slider.style.left = `-${checkIndex(index) * 100}vw`;
+    slider.style.left = `-${index * 100}vw`;
     console.log(index);
+    if (index >= 3) index = 0;
   });
 
   prev.addEventListener('click', () => {
     index--;
-    slider.style.left = `-${checkIndex(index) * 100}vw`;
-    console.log(index);
-  });
+    slider.style.left = `-${index * 100}vw`;
 
-  function checkIndex(index) {
-    if (index >= 3) {
-      index = 0;
-    } else if (index <= -1) {
-      index = 3;
-    }
-    return index;
-  }
+    if (index <= 0) index = slidesLength - 1;
+  });
 
   // items.appendChild(cloneFirst);
   // items.insertBefore(cloneLast, firstSlide);
