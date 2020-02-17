@@ -114,32 +114,67 @@ function LoaderAnimations() {
 function Slider(slider, prev, next) {
   let slides = document.getElementsByClassName('slide'),
     index = 0;
-
   next.addEventListener('click', () => {
-    let newSlide = slides[0].cloneNode(true);
-    slider.appendChild(newSlide);
-    slider.style.transition = '0.2s';
-    slider.style.left = `-100vw`;
-    setTimeout(() => {
-      slider.style.transition = '0s';
-      slider.style.left = `0vw`;
-      slider.removeChild(slides[0]);
-    }, 200);
+    let power = 1;
+    // let newSlide = slides[0].cloneNode(true);
+    // slider.appendChild(newSlide);
+    // slider.style.transition = '0.2s';
+    // slider.style.left = `-100vw`;
+    // setTimeout(() => {
+    //   slider.style.transition = '0s';
+    //   slider.style.left = `0vw`;
+    //   slider.removeChild(slides[0]);
+    // }, 200);
+    index++;
+    if (index === 1) {
+      slides[0].style.transform = `translate3d(-${power * 100}vw,0,0)`;
+      slides[1].style.transform = `translate3d(0,0,0)`;
+      slides[2].style.transform = `translate3d(${power * 100}vw,0,0)`;
+    } else if (index === 2) {
+      slides[0].style.transform = `translate3d(${power * 100}vw,0,0)`;
+      slides[1].style.transform = `translate3d(-${power * 100}vw,0,0)`;
+      slides[2].style.transform = `translate3d(0,0,0)`;
+    } else if (index === 3) {
+      slides[0].style.transform = `translate3d(${power * 100}vw,0,0)`;
+      slides[1].style.transform = `translate3d(${power * 100}vw,0,0)`;
+      slides[2].style.transform = `translate3d(0,0,0)`;
+      index = 0;
+    } else if (index === 0) {
+      slides[0].style.transform = `translate3d(-${power * 100}vw,0,0)`;
+      slides[1].style.transform = `translate3d(0,0,0)`;
+      slides[2].style.transform = `translate3d(${power * 100}vw,0,0)`;
+    }
   });
 
   prev.addEventListener('click', () => {
-    let newSlide = slides[slides.length - 1].cloneNode(true);
-
+    let power = 1;
+    // let newSlide = slides[slides.length - 1].cloneNode(true);
+    // index--;
+    // slider.style.transition = '0s';
+    // slider.style.left = `${index * 100}vw`;
+    // setTimeout(() => {
+    //   index = 0;
+    //   slider.style.transition = '0.2s';
+    //   slider.style.left = `${index * 100}vw`;
+    //   slider.removeChild(slides[slides.length - 1]);
+    // }, 10);
+    // slider.insertBefore(newSlide, slides[0]);
     index--;
-    slider.style.transition = '0s';
-    slider.style.left = `${index * 100}vw`;
-    setTimeout(() => {
-      index = 0;
-      slider.style.transition = '0.2s';
-      slider.style.left = `${index * 100}vw`;
-      slider.removeChild(slides[slides.length - 1]);
-    }, 10);
-    slider.insertBefore(newSlide, slides[0]);
+    console.log(index);
+    if (index >= -1) {
+      slides[0].style.transform = `translate3d(${power * 100}vw,0,0)`;
+      slides[1].style.transform = `translate3d(-${power * 100}vw,0,0)`;
+      slides[2].style.transform = `translate3d(0vw,0,0)`;
+      index = slides.length - 1;
+    } else if (index === 1) {
+      slides[0].style.transform = `translate3d(-${power * 100}vw,0,0)`;
+      slides[1].style.transform = `translate3d(0,0,0)`;
+      slides[2].style.transform = `translate3d(${power * 100}vw,0,0)`;
+    } else if (index === 2) {
+      slides[0].style.transform = `translate3d(${power * 100}vw,0,0)`;
+      slides[1].style.transform = `translate3d(${power * 100}vw,0,0)`;
+      slides[2].style.transform = `translate3d(0,0,0)`;
+    }
   });
 
   let clientX = 0;
@@ -149,22 +184,22 @@ function Slider(slider, prev, next) {
     cnt.addEventListener('touchend', event => {
       clientX = event.changedTouches[0].clientX;
       if (clientx - clientX < 100) {
-        let newSlide = slides[slides.length - 1].cloneNode(true);
-        index--;
-        slider.style.transition = '0s';
-        slider.style.left = `${index * 100}vw`;
-        setTimeout(() => {
-          index = 0;
-          slider.style.transition = '0.2s';
-          slider.style.left = `${index * 100}vw`;
-          slider.removeChild(slides[slides.length - 1]);
-        }, 10);
-        slider.insertBefore(newSlide, slides[0]);
+        // let newSlide = slides[slides.length - 1].cloneNode(true);
+        // index--;
+        // slider.style.transition = '0s';
+        // slider.style.left = `${index * 100}vw`;
+        // setTimeout(() => {
+        //   index = 0;
+        //   slider.style.transition = '0.2s';
+        //   slider.style.left = `${index * 100}vw`;
+        //   slider.removeChild(slides[slides.length - 1]);
+        // }, 10);
+        // slider.insertBefore(newSlide, slides[0]);
       } else if (clientx - clientX > -100) {
-        let newSlide = slides[index].cloneNode(true);
-        index++;
-        slider.style.left = `-${index * 100}vw`;
-        slider.appendChild(newSlide);
+        // let newSlide = slides[index].cloneNode(true);
+        // index++;
+        // slider.style.left = `-${index * 100}vw`;
+        // slider.appendChild(newSlide);
       }
     })
   );

@@ -209,7 +209,7 @@ body {
 .slider {
   position: relative;
   display: flex;
-  max-height: 70vh;
+  height: 70vh;
   width: 100%;
   transition: all 0.2s ease-out;
 }
@@ -223,6 +223,20 @@ body {
   flex-direction: column;
   justify-content: space-between;
   scroll-snap-align: center;
+  position: absolute;
+  transition: all 0.2s ease;
+}
+
+.slide:nth-child(1) {
+  transform: translate3d(0, 0, 0);
+}
+
+.slide:nth-child(2) {
+  transform: translate3d(100vw, 0, 0);
+}
+
+.slide:nth-child(3) {
+  transform: translate3d(-100vw, 0, 0);
 }
 
 .slide__product {
