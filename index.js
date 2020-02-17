@@ -51,20 +51,18 @@ const Screen = window.addEventListener('orientationchange', function() {
 });
 
 onLoading();
-Slider(slider, prevItem, nextItem);
+Slider(prevItem, nextItem);
 
 function onLoading() {
-  // let interval = window.setInterval(function() {
-  //   if (document.getElementsByTagName('body')[0] !== undefined) {
-  //     loadingScreen.style.display = 'none';
-  //     window.clearInterval(interval);
-  //   }
-  //   SliderAnimations();
-  // }, 2200);
+  let interval = window.setInterval(function() {
+    if (document.getElementsByTagName('body')[0] !== undefined) {
+      loadingScreen.style.display = 'none';
+      window.clearInterval(interval);
+    }
+    SliderAnimations();
+  }, 2200);
 
-  // LoaderAnimations();
-
-  SliderAnimations();
+  LoaderAnimations();
 }
 
 function SliderAnimations() {
@@ -77,10 +75,10 @@ function SliderAnimations() {
     .then(() => {
       setTimeout(() => {
         shadow.forEach(shadow => shadow.classList.add('reveal'));
-      }, 300);
+      }, 200);
     })
     .then(() => {
-      setTimeout(() => productImg.forEach(product => product.classList.add('reveal')), 800);
+      setTimeout(() => productImg.forEach(product => product.classList.add('reveal')), 500);
     });
 }
 
@@ -111,21 +109,19 @@ function LoaderAnimations() {
     });
 }
 
-function Slider(slider, prev, next) {
+function Slider(prev, next) {
   let slides = document.getElementsByClassName('slide'),
     index = 0;
-  next.addEventListener('click', () => {
+
+  slides[0].style.transform = `translate3d(0,0,0)`;
+  slides[1].style.transform = `translate3d(100vw,0,0)`;
+  slides[2].style.transform = `translate3d(-100vw,0,0)`;
+
+  const nextSlide = () => {
     let power = 1;
-    // let newSlide = slides[0].cloneNode(true);
-    // slider.appendChild(newSlide);
-    // slider.style.transition = '0.2s';
-    // slider.style.left = `-100vw`;
-    // setTimeout(() => {
-    //   slider.style.transition = '0s';
-    //   slider.style.left = `0vw`;
-    //   slider.removeChild(slides[0]);
-    // }, 200);
+
     index++;
+
     if (index === 1) {
       slides[0].style.transform = `translate3d(-${power * 100}vw,0,0)`;
       slides[1].style.transform = `translate3d(0,0,0)`;
@@ -134,47 +130,49 @@ function Slider(slider, prev, next) {
       slides[0].style.transform = `translate3d(${power * 100}vw,0,0)`;
       slides[1].style.transform = `translate3d(-${power * 100}vw,0,0)`;
       slides[2].style.transform = `translate3d(0,0,0)`;
-    } else if (index === 3) {
-      slides[0].style.transform = `translate3d(${power * 100}vw,0,0)`;
-      slides[1].style.transform = `translate3d(${power * 100}vw,0,0)`;
-      slides[2].style.transform = `translate3d(0,0,0)`;
-      index = 0;
-    } else if (index === 0) {
-      slides[0].style.transform = `translate3d(-${power * 100}vw,0,0)`;
-      slides[1].style.transform = `translate3d(0,0,0)`;
-      slides[2].style.transform = `translate3d(${power * 100}vw,0,0)`;
-    }
-  });
 
-  prev.addEventListener('click', () => {
+      index = -1;
+    } else if (index === 0) {
+      slides[0].style.transform = `translate3d(0,0,0)`;
+      slides[1].style.transform = `translate3d(${power * 100}vw,0,0)`;
+      slides[2].style.transform = `translate3d(-${power * 100}vw,0,0)`;
+    }
+  };
+
+  const prevSlide = () => {
     let power = 1;
-    // let newSlide = slides[slides.length - 1].cloneNode(true);
-    // index--;
-    // slider.style.transition = '0s';
-    // slider.style.left = `${index * 100}vw`;
-    // setTimeout(() => {
-    //   index = 0;
-    //   slider.style.transition = '0.2s';
-    //   slider.style.left = `${index * 100}vw`;
-    //   slider.removeChild(slides[slides.length - 1]);
-    // }, 10);
-    // slider.insertBefore(newSlide, slides[0]);
+
     index--;
-    console.log(index);
-    if (index >= -1) {
+
+    if (index === 0) {
+      slides[0].style.transform = `translate3d(0,0,0)`;
+      slides[1].style.transform = `translate3d(${power * 100}vw,0,0)`;
+      slides[2].style.transform = `translate3d(-${power * 100}vw,0,0)`;
+    } else if (index === -1) {
       slides[0].style.transform = `translate3d(${power * 100}vw,0,0)`;
       slides[1].style.transform = `translate3d(-${power * 100}vw,0,0)`;
-      slides[2].style.transform = `translate3d(0vw,0,0)`;
-      index = slides.length - 1;
-    } else if (index === 1) {
+      slides[2].style.transform = `translate3d(0,0,0)`;
+    } else if (index === -2) {
       slides[0].style.transform = `translate3d(-${power * 100}vw,0,0)`;
       slides[1].style.transform = `translate3d(0,0,0)`;
       slides[2].style.transform = `translate3d(${power * 100}vw,0,0)`;
-    } else if (index === 2) {
-      slides[0].style.transform = `translate3d(${power * 100}vw,0,0)`;
-      slides[1].style.transform = `translate3d(${power * 100}vw,0,0)`;
-      slides[2].style.transform = `translate3d(0,0,0)`;
+      index = 1;
     }
+  };
+
+  next.addEventListener('click', () => {
+    setTimeout(nextSlide, 300);
+
+    animated.forEach(node => (node.style.opacity = 0));
+
+    setTimeout(() => animated.forEach(node => (node.style.opacity = 1)), 500);
+  });
+  prev.addEventListener('click', () => {
+    setTimeout(prevSlide, 300);
+
+    animated.forEach(node => (node.style.opacity = 0));
+
+    setTimeout(() => animated.forEach(node => (node.style.opacity = 1)), 500);
   });
 
   let clientX = 0;
@@ -183,23 +181,18 @@ function Slider(slider, prev, next) {
   sliderImgsCnt.forEach(cnt =>
     cnt.addEventListener('touchend', event => {
       clientX = event.changedTouches[0].clientX;
-      if (clientx - clientX < 100) {
-        // let newSlide = slides[slides.length - 1].cloneNode(true);
-        // index--;
-        // slider.style.transition = '0s';
-        // slider.style.left = `${index * 100}vw`;
-        // setTimeout(() => {
-        //   index = 0;
-        //   slider.style.transition = '0.2s';
-        //   slider.style.left = `${index * 100}vw`;
-        //   slider.removeChild(slides[slides.length - 1]);
-        // }, 10);
-        // slider.insertBefore(newSlide, slides[0]);
-      } else if (clientx - clientX > -100) {
-        // let newSlide = slides[index].cloneNode(true);
-        // index++;
-        // slider.style.left = `-${index * 100}vw`;
-        // slider.appendChild(newSlide);
+      if (clientx - clientX > 100) {
+        setTimeout(nextSlide, 300);
+
+        animated.forEach(node => (node.style.opacity = 0));
+
+        setTimeout(() => animated.forEach(node => (node.style.opacity = 1)), 500);
+      } else if (clientx - clientX < -100) {
+        setTimeout(prevSlide, 300);
+
+        animated.forEach(node => (node.style.opacity = 0));
+
+        setTimeout(() => animated.forEach(node => (node.style.opacity = 1)), 500);
       }
     })
   );
