@@ -1,4 +1,5 @@
 const notAvailableScreen = document.querySelector('.notAvailable');
+const productImg = document.querySelectorAll('.product');
 //----------------------------Loader selection------------------------------//
 const disclaimer = document.querySelector('.content__disclaimer');
 const infoPriceTag = document.querySelector('.loader__infoPriceTag');
@@ -16,6 +17,7 @@ const nextItem = document.getElementById('next');
 const shadow = document.querySelectorAll('.shadow');
 const sliderWrapper = document.querySelector('.sliderContainer');
 const slider = document.getElementById('slider');
+const sliderImgsCnt = document.querySelectorAll('.slide__product');
 
 //------------------------------- Buttons selection ---------------------------------//
 const versaPink = document.getElementById('versaPink');
@@ -66,22 +68,20 @@ function onLoading() {
 }
 
 function SliderAnimations() {
-  return (
-    new Promise(res => {
-      res();
+  return new Promise(res => {
+    res();
+  })
+    .then(() => {
+      sliderContainer.style.visibility = 'visible';
     })
-      .then(() => {
-        sliderContainer.style.visibility = 'visible';
-      })
-      // .then(() => {
-      //   setTimeout(() => slidesImgs.forEach(slide => slide.classList.add('productAppeared')), 200);
-      // })
-      .then(() => {
-        setTimeout(() => {
-          shadow.forEach(shadow => shadow.classList.add('reveal'));
-        }, 400);
-      })
-  );
+    .then(() => {
+      setTimeout(() => {
+        shadow.forEach(shadow => shadow.classList.add('reveal'));
+      }, 300);
+    })
+    .then(() => {
+      setTimeout(() => productImg.forEach(product => product.classList.add('reveal')), 800);
+    });
 }
 
 function LoaderAnimations() {
@@ -111,40 +111,69 @@ function LoaderAnimations() {
     });
 }
 
-function nextSlide(e) {
-  const touch = e.touches[0].clientX;
-
-  touch > window.clientWidth / 2 ? console.log('more') : console.log('less');
-}
-
 function Slider(slider, prev, next) {
-  let slides = document.querySelectorAll('.slide'),
-    slidesLength = slides.length,
-    firstSlide = slides[0],
-    lastSlide = slides[slidesLength - 1],
-    slideSize = slides[0].offsetWidth,
-    cloneFirst = firstSlide.cloneNode(true),
-    cloneLast = lastSlide.cloneNode(true),
+  let slides = document.getElementsByClassName('slide'),
     index = 0;
 
   next.addEventListener('click', () => {
-    index++;
-    slider.style.left = `-${index * 100}vw`;
-    console.log(index);
-    if (index >= 3) index = 0;
+    let newSlide = slides[0].cloneNode(true);
+    slider.appendChild(newSlide);
+    slider.style.transition = '0.2s';
+    slider.style.left = `-100vw`;
+    setTimeout(() => {
+      slider.style.transition = '0s';
+      slider.style.left = `0vw`;
+      slider.removeChild(slides[0]);
+    }, 200);
   });
 
   prev.addEventListener('click', () => {
-    index--;
-    slider.style.left = `-${index * 100}vw`;
+    let newSlide = slides[slides.length - 1].cloneNode(true);
 
-    if (index <= 0) index = slidesLength - 1;
+    index--;
+    slider.style.transition = '0s';
+    slider.style.left = `${index * 100}vw`;
+    setTimeout(() => {
+      index = 0;
+      slider.style.transition = '0.2s';
+      slider.style.left = `${index * 100}vw`;
+      slider.removeChild(slides[slides.length - 1]);
+    }, 10);
+    slider.insertBefore(newSlide, slides[0]);
   });
 
-  // items.appendChild(cloneFirst);
-  // items.insertBefore(cloneLast, firstSlide);
-}
+  let clientX = 0;
+  let clientx = 0;
 
+  sliderImgsCnt.forEach(cnt =>
+    cnt.addEventListener('touchend', event => {
+      clientX = event.changedTouches[0].clientX;
+      if (clientx - clientX < 100) {
+        let newSlide = slides[slides.length - 1].cloneNode(true);
+        index--;
+        slider.style.transition = '0s';
+        slider.style.left = `${index * 100}vw`;
+        setTimeout(() => {
+          index = 0;
+          slider.style.transition = '0.2s';
+          slider.style.left = `${index * 100}vw`;
+          slider.removeChild(slides[slides.length - 1]);
+        }, 10);
+        slider.insertBefore(newSlide, slides[0]);
+      } else if (clientx - clientX > -100) {
+        let newSlide = slides[index].cloneNode(true);
+        index++;
+        slider.style.left = `-${index * 100}vw`;
+        slider.appendChild(newSlide);
+      }
+    })
+  );
+  sliderImgsCnt.forEach(cnt =>
+    cnt.addEventListener('touchstart', event => {
+      clientx = event.changedTouches[0].clientX;
+    })
+  );
+}
 //--------------------------Select colors events------------------------------//
 
 versaPink.addEventListener('click', function() {
@@ -247,24 +276,10 @@ HRBlack.addEventListener('click', function() {
   selectedHRBlack.value = 'on';
 
   if (selectedHRBlack.value === 'on') {
-    HRBlack.children[0].src = './assets/P_HR_White_off.png';
+    HRWhite.children[0].src = './assets/P_HR_White_off.png';
     HRLilac.children[0].src = './assets/P_HR_Lilac_off.png';
     this.children[0].src = './assets/P_HR_Black_on.png';
   }
 
   hr.src = this.dataset.selecteditem;
 });
-// slidesImgs.forEach(img => img.addEventListener('touchstart', e => nextSlide(e)));
-// const playAnimationEnter = () => {
-//   animated.forEach(node => node.classList.add('hidden'));
-// };
-// const playAnimationEnd = () => {
-//   animated.forEach(node => node.classList.remove('hidden'));
-// };
-// nextItem.addEventListener('click', () => {
-//   playAnimationEnter();
-//   setTimeout(() => playAnimationEnd(), 1500);
-// });
-// prevItem.addEventListener('click', () => {
-//   playAnimationEnter();
-// });
